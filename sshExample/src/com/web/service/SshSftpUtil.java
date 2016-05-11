@@ -1,5 +1,6 @@
 package com.web.service;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -19,7 +20,7 @@ public class SshSftpUtil {
 	 * @param psw  主机登陆密码
 	 * @param port 主机ssh2登陆端口，如果取默认值，传-1
 	 */
-	public static void sshSftp(String ip, String user, String psw ,int port,String sftpuri,String pushfilepath,String  sftpfilename) throws Exception{
+	public static void sshSftp(String ip, String user, String psw ,int port,String sftpuri,byte[] pusfile,String  sftpfilename) throws Exception{
 	    Session session = null;
 	    Channel channel = null;
 	 
@@ -66,7 +67,7 @@ public class SshSftpUtil {
 	         
 	        //以下代码实现从本地上传一个文件到服务器，如果要实现下载，对换以下流就可以了
 	        OutputStream outstream = sftp.put(sftpfilename);
-	        InputStream instream = new FileInputStream(new File(pushfilepath));
+	        InputStream instream = new ByteArrayInputStream(pusfile);
 	         
 	        byte b[] = new byte[1024];
 	        int n;
@@ -88,7 +89,7 @@ public class SshSftpUtil {
 	
 	public static void main(String[] args) {
 		try {
-			sshSftp("127.0.0.1", "git", "admin", 22, "SuperXM", "D:/print.txt", "JUN.TXT");
+		//	sshSftp("127.0.0.1", "git", "admin", 22, "SuperXM", "D:/print.txt", "JUN.TXT");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

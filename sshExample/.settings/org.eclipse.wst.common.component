@@ -2,7 +2,7 @@
     <wb-module deploy-name="springMVC1">
         <wb-resource deploy-path="/" source-path="/WebRoot"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="/sshExample"/>
-        <property name="java-output-path" value="/sshExample/WebRoot/WEB-INF/classes"/>
+        <property name="java-output-path" value="/EtcProject/WebRoot/WEB-INF/classes"/>
+        <property name="context-root" value="/EtcProject"/>
     </wb-module>
 </project-modules>

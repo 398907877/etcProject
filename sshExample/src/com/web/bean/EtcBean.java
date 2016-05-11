@@ -2,28 +2,61 @@ package com.web.bean;
 
 public class EtcBean {
 	
+	//机构号
+	private  String   orgcode;
+	//时间
+	private  String datetime;
 	
-	private  String   email;
-	private  String passwsd;
-	private String text;
-	public String getEmail() {
-		return email;
+	//车牌号
+	private String cardno;
+	//车型
+	private  String  cardtype;
+	//湘通卡号
+	private  String  idcard;
+	//描述
+	private  String  textlong;
+	public String getOrgcode() {
+		return orgcode;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setOrgcode(String orgcode) {
+		this.orgcode = orgcode;
 	}
-	public String getPasswsd() {
-		return passwsd;
+	public String getDatetime() {
+		return datetime;
 	}
-	public void setPasswsd(String passwsd) {
-		this.passwsd = passwsd;
+	public void setDatetime(String datetime) {
+		this.datetime = datetime;
 	}
-	public String getText() {
-		return text;
+	public String getCardno() {
+		return cardno;
 	}
-	public void setText(String text) {
-		this.text = text;
+	public void setCardno(String cardno) {
+		this.cardno = cardno;
 	}
+	public String getCardtype() {
+		return cardtype;
+	}
+	public void setCardtype(String cardtype) {
+		this.cardtype = cardtype;
+	}
+	public String getIdcard() {
+		return idcard;
+	}
+	public void setIdcard(String idcard) {
+		this.idcard = idcard;
+	}
+	public String getTextlong() {
+		return textlong;
+	}
+	public void setTextlong(String textlong) {
+		this.textlong = textlong;
+	}
+	
+	
+	
+	
+	
+	
 	
 
 }

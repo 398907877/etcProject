@@ -29,7 +29,8 @@ public class UserController {
 	public String addUser(User user)
 	{ 
 		userManager.addUser(user);
-		//return "redirect/forward:url";
+		
+		
 		return "redirect:/user/getAllUser";
 	}
 

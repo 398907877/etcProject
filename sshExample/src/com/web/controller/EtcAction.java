@@ -1,5 +1,6 @@
 package com.web.controller;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -53,44 +54,54 @@ public class EtcAction {
 	{
 		System.out.println("hanld  to  wujiajun");
 		
-		
-		
-		InputStream inPicone= picone.getInputStream();
-		String  piconeName=picone.getName();
-		String piconeType = picone.getContentType();
-		String origin = picone.getOriginalFilename(); 
-		
-		String path=  request.getSession().getServletContext().getRealPath("/");
-		
-		
-		
-		
-		File  filePicone  = new File(path+"/"+origin);
-		
-		OutputStream  outPicone  = new  FileOutputStream(filePicone);
-		
-		byte[] buffer = new byte[1024];
-		int len=0;
-		while ((len=inPicone.read(buffer))!=-1) {
+		try {
 			
-			outPicone.write(buffer, 0, len);
 
+		
+		
+		String  publicFileNam= bean.getOrgcode()+"_"+bean.getDatetime().replace("-", "")+"_"+bean.getCardno()
+		+"_"+bean.getCardtype()+"_"+bean.getIdcard();
+		
+		
+	  
+		
+		
+		//车身照片
+		String  carPicfilename=publicFileNam+"_01_01.jpg";
+
+		String carPicFilename = cardpic.getOriginalFilename(); 
+
+		SshSftpUtil.sshSftp(host, user, passwsd, port, url,cardpic.getBytes() , carPicfilename);
+
+		
+		
+		
+		
+		//证件照片1
+		String  picOnefilename=publicFileNam+"_02_01.jpg";
+
+		String piconeFilename = picone.getOriginalFilename(); 
+
+		SshSftpUtil.sshSftp(host, user, passwsd, port, url,picone.getBytes() , picOnefilename);
+
+		
+		
+		
+		//证件照片2
+		String  picTwofilename=publicFileNam+"_02_02.jpg";
+
+		String picTwoFilename = pictwo.getOriginalFilename(); 
+
+		SshSftpUtil.sshSftp(host, user, passwsd, port, url,pictwo.getBytes() , picTwofilename);
+
+		
+		} catch (Exception e) {
+			return "/ETC/fail";
 		}
 		
-		outPicone.flush();
-		outPicone.close();
-		
-		inPicone.close();
-		
-		 
-		String  orgcode=(String) request.getParameter("orgcode");
-		
-		SshSftpUtil.sshSftp(host, user, passwsd, port, url,path+"/"+origin , origin);
-
 		
 		
-		
-		return "/ETC/moban";
+		return "/ETC/success";
 
 	}
 	
