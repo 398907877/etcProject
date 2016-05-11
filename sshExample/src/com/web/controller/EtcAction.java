@@ -57,14 +57,14 @@ public class EtcAction {
 		try {
 			
 
-		
+   
 		
 		String  publicFileNam= bean.getOrgcode()+"_"+bean.getDatetime().replace("-", "")+"_"+bean.getCardno()
 		+"_"+bean.getCardtype()+"_"+bean.getIdcard();
 		
 		
 	  
-		
+		if(cardpic.getSize()!=0){
 		
 		//车身照片
 		String  carPicfilename=publicFileNam+"_01_01.jpg";
@@ -72,11 +72,11 @@ public class EtcAction {
 		String carPicFilename = cardpic.getOriginalFilename(); 
 
 		SshSftpUtil.sshSftp(host, user, passwsd, port, url,cardpic.getBytes() , carPicfilename);
-
+		}
 		
 		
 		
-		
+		if(picone.getSize()!=0){
 		//证件照片1
 		String  picOnefilename=publicFileNam+"_02_01.jpg";
 
@@ -84,16 +84,18 @@ public class EtcAction {
 
 		SshSftpUtil.sshSftp(host, user, passwsd, port, url,picone.getBytes() , picOnefilename);
 
+		}
 		
 		
 		
+		if(pictwo.getSize()!=0){
 		//证件照片2
 		String  picTwofilename=publicFileNam+"_02_02.jpg";
 
 		String picTwoFilename = pictwo.getOriginalFilename(); 
 
 		SshSftpUtil.sshSftp(host, user, passwsd, port, url,pictwo.getBytes() , picTwofilename);
-
+		}
 		
 		} catch (Exception e) {
 			return "/ETC/fail";
